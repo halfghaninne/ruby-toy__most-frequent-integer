@@ -4,22 +4,22 @@
 
 def find_most_frequent_integer(arr)
   counts = Hash.new(0)
-  
+
   arr.each do |int|
     counts[int] += 1
   end
-  # returns a hash with the count for each value in the array
-  
+
   freq = counts.values
-  # returns array of just the frequencies.
-  
-  if freq.uniq.length > 1
+  # returns array of frequencies [2,1]
+
+  if freq.uniq! == false && freq.uniq.length > 1
     freq.max
     counts.key(freq.max)
   else
     nil
   end
+
   
 end
 
-# note to self: method does not yet account for a situation like [2,2,1,1,0]
+# note to self: method now accounts for duplicates (eg [2,2,1,1,0]) and for unique arrays (eg [1,2,3,4]) BUT NOW NOT FOR most freq integers :( (eg [1,1,2,3])
